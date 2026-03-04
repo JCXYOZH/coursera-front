@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html {{ HTML_ATTRS }}>
+<head {{ HEAD_ATTRS }}>
+  {{ HEAD }}
+  <!-- 设备检测脚本：手机/平板自动跳转到 H5 项目 -->
+  <script>
+    (function() {
+      // 判断屏幕宽度，阈值可自行调整（例如 768px）
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width <= 768) {
+        // 手机设备：跳转到 phone 项目入口
+        window.location.replace('/phone/phone.html');
+      }
+    })();
+  </script>
+</head>
+<body {{ BODY_ATTRS }}>
+{{ APP }}
+</body>
+</html>
