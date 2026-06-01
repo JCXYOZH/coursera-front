@@ -24,20 +24,33 @@
           <tr class="good">
             <td class="name First">
               <!--                :href="'http://localhost:3000/course/' + order.courseId"-->
-              <a
+<!--              <a
                 target="_blank"
                 :href="'https://6311b4bc.r16.vip.cpolar.cn/course/' + order.courseId"
               >
                 <img :src="$config.BASE_URL + '/' + order.courseCover"
-              /></a>
+              /></a>-->
+              <nuxt-link
+                :to="'/course/' + order.courseId"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img :src="$config.BASE_URL + '/' + order.courseCover"
+                />
+              </nuxt-link>
               <div class="goodInfo">
                 <input type="hidden" class="ids ids_14502" value="14502" />
                 <!--                :href="'http://localhost:3000/course/' + order.courseId"-->
-                <a
+<!--                <a
                   target="_blank"
                   :href="'https://6311b4bc.r16.vip.cpolar.cn/course/' + order.courseId"
                   >{{ order.courseTitle }}</a
-                >
+                >-->
+                <nuxt-link
+                  :to="'/course/' + order.courseId"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >{{ order.courseTitle }}</nuxt-link>
               </div>
             </td>
             <td class="price">

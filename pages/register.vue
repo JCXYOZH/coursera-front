@@ -138,7 +138,7 @@
         </p>
       </el-form>
       <!-- 更多注册方式 -->
-      <!--href="http://192.168.124.10:8160/api/ucenter/wx/userLogin"-->
+      <!--href="http://localhost:8160/api/ucenter/wx/userLogin"-->
       <div class="more-sign">
         <h6>社交帐号直接登录</h6>
         <ul>
@@ -147,7 +147,7 @@
               id="weixin"
               class="weixin"
               target="_blank"
-              href="http://free.svipss.top:45662/api/ucenter/wx/userLogin"
+              href="http://localhost:8160/api/ucenter/wx/userLogin"
             ><i class="iconfont icon-weixin"
             /></a>
           </li>

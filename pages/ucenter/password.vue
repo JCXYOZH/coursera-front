@@ -153,10 +153,10 @@ export default {
   methods: {
     //修改密码提交的方法
     submitChange() {
-      this.params.password = MD5(this.params.password);
+      // this.params.password = MD5(this.params.password);
       loginAPI.updatePassword(this.params).then((response) => {
-        //提示密码修改成功
-        this.$message.success("修改密码成功! ✌");
+        //提示修改成功
+        this.$message.success("修改成功! ✌");
         //跳转到登陆页面
         this.$router.push({
           path: "/login",
@@ -168,8 +168,8 @@ export default {
     //给已经输入的手机号发送验证码
     getCodeFun() {
       // TO DO
-      //registerAPI.sendVerificationCode(this.params.mobile).then((response) => {
-      registerAPI.getVerificationCode(this.params.mobile).then((response) => {
+      registerAPI.sendVerificationCode(this.params.mobile).then((response) => {
+      // registerAPI.getVerificationCode(this.params.mobile).then((response) => {
         //提示发送验证码成功
         this.$message.success("验证码已发送🆗");
         //点完发送  600秒内不让再发

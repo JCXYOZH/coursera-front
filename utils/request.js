@@ -4,8 +4,10 @@ import { Message } from 'element-ui'
 
 // 创建axios实例
 const service = axios.create({
+    // baseURL 从统一配置读取
+    baseURL: process.env.BASE_URL || 'http://localhost:8500',
     // baseURL: "http://localhost:8500",
-    baseURL: "https://404276cd.r16.vip.cpolar.cn",
+    // baseURL: "http://42a5223c.r16.vip.cpolar.cn",
     // timeout: 60000,
     timeout: 60000,
 });

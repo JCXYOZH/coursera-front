@@ -64,7 +64,7 @@
               id="weixin"
               class="weixin"
               target="_blank"
-              href="http://free.svipss.top:45662/api/ucenter/wx/userLogin"
+              href="http://localhost:8160/api/ucenter/wx/userLogin"
               ><i class="iconfont icon-weixin"
             /></a>
           </li>

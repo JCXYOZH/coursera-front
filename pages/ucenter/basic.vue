@@ -25,19 +25,23 @@
             />
           </el-form-item>
           <!-- 头像 -->
+          <!--              :show-file-list="true"-->
+          <!--              :action="BASE_API"-->
           <el-form-item label="头像">
             <el-upload
-              :show-file-list="true"
               :on-success="handleAvatarSuccess"
               :on-error="handleAvatarError"
               :before-upload="beforeAvatarUpload"
               class="avatar-uploader"
-              :action="BASE_API"
+              :action="uploadAction"
+              ref="upload"
+              :show-file-list="false"
             >
-              <img
+<!--              <img
                 v-if="memberInfo.avatar"
                 :src="memberInfo.avatar && (memberInfo.avatar.startsWith('http') ? memberInfo.avatar : $config.BASE_URL + '/' + memberInfo.avatar)"
-              />
+              />-->
+              <img v-if="memberInfo.avatar" :src="avatarImageSrc" class="avatar" />
               <i v-else class="el-icon-plus avatar-uploader-icon" />
             </el-upload>
           </el-form-item>
@@ -60,6 +64,7 @@
 import loginAPI from "@/api/login";
 import memberAPI from "@/api/ucenter/member";
 import cookie from "js-cookie";
+import request from '~/utils/request'
 
 export default {
   layout: "center",
@@ -76,7 +81,7 @@ export default {
         sign: "",
       },
       // BASE_API: "http://localhost:8500/admin/oss/uploadAvatarFile",
-      BASE_API: "https://404276cd.r16.vip.cpolar.cn/admin/oss/uploadAvatarFile",
+      // BASE_API: "https://404276cd.r16.vip.cpolar.cn/admin/oss/uploadAvatarFile",
       // 允许的图片类型列表
       allowImageType: [
         "image/png",
@@ -90,6 +95,18 @@ export default {
         "image/tiff",
       ],
     };
+  },
+  computed: {
+    // 上传接口完整地址
+    uploadAction() {
+      return `${this.$config.BASE_URL}/admin/oss/uploadAvatarFile`
+    },
+    avatarImageSrc() {
+      const avatar = this.memberInfo.avatar
+      if (!avatar) return ''
+      const base = avatar.startsWith('http') ? '' : this.$config.BASE_URL + '/'
+      return `${base}${avatar}?t=${Date.now()}`
+    }
   },
   created() {
     var userStr = cookie.get("oes_ucenter");
@@ -105,19 +122,30 @@ export default {
       memberAPI.updateUserInfo(this.memberInfo).then((response) => {
         //修改成功
         //提示成功
-        this.$message.success("修改成功，重新登录，立即生效！🧙‍♂️");
+        // this.$message.success("修改成功，重新登录，立即生效！🧙‍♂️");
+        this.$message.success("修改成功！🧙‍♂️");
       });
     },
 
     // 头像
     // 文件上传成功
-    handleAvatarSuccess(response) {
+    /*handleAvatarSuccess(response) {
       if (response.success) {
         this.memberInfo.avatar = response.data;
         // 强制重新渲染
         this.$forceUpdate();
       } else {
         this.$message.error("上传失败! （非20000）");
+      }
+    },*/
+    handleAvatarSuccess(response) {
+      if (response.success) {
+        this.$set(this.memberInfo, 'avatar', response.data)
+        this.$refs.upload.clearFiles()
+        // 同步更新 cookie，防止刷新丢失
+        cookie.set('oes_ucenter', JSON.stringify(this.memberInfo))
+      } else {
+        this.$message.error('上传失败')
       }
     },
 

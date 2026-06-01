@@ -18,8 +18,8 @@ module.exports = {
   },*/
 
   publicRuntimeConfig: {
-    // BASE_URL: 'http://localhost:8500'
-    BASE_URL: 'https://404276cd.r16.vip.cpolar.cn'
+    BASE_URL: 'http://localhost:8500' || process.env.BASE_URL
+    // BASE_URL: 'http://42a5223c.r16.vip.cpolar.cn'
   },
 
   // ========== 插件配置 ==========

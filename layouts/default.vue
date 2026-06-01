@@ -28,7 +28,7 @@
             <router-link to="/teacher" tag="li" active-class="current">
               <a>名师</a>
             </router-link>
-            <li><a href="https://42903e95.r16.vip.cpolar.cn">习题</a></li>
+            <li><a href="http://7446d765.r16.vip.cpolar.cn">习题</a></li>
           </ul>
           <!-- / nav -->
           <ul class="h-r-login">
